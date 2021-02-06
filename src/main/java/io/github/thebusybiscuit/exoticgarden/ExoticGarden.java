@@ -244,7 +244,7 @@ public class ExoticGarden extends JavaPlugin implements SlimefunAddon {
         instance = null;
     }
 
-    private void registerTree(String name, String displayname, String texture, String color, Color pcolor, String juice, boolean pie, Material... soil) {
+    private void registerTree(String name, String displayname, String texture, String color, Color pcolor, String juice, String juicename, boolean pie, Material... soil) {
         String id = name.toUpperCase(Locale.ROOT).replace(' ', '_');
         Tree tree = new Tree(id, texture, soil);
         trees.add(tree);
@@ -258,7 +258,7 @@ public class ExoticGarden extends JavaPlugin implements SlimefunAddon {
         new ExoticGardenFruit(mainCategory, new SlimefunItemStack(id, texture, color + displayname), ExoticGardenRecipeTypes.HARVEST_TREE, true, new ItemStack[] {null, null, null, null, getItem(id + "_SAPLING"), null, null, null, null}).register(this);
 
         if (pcolor != null) {
-            new Juice(drinksCategory, new SlimefunItemStack(juice.toUpperCase().replace(" ", "_"), new CustomPotion(color + juice, pcolor, new PotionEffect(PotionEffectType.SATURATION, 6, 0), "", "&7&o恢復 &b&o" + "3.0" + " &7&o飽食度")), RecipeType.JUICER, new ItemStack[] {getItem(id), null, null, null, null, null, null, null, null}).register(this);
+            new Juice(drinksCategory, new SlimefunItemStack(juice.toUpperCase().replace(" ", "_"), new CustomPotion(color + juicename, pcolor, new PotionEffect(PotionEffectType.SATURATION, 6, 0), "", "&7&o恢復 &b&o" + "3.0" + " &7&o飽食度")), RecipeType.JUICER, new ItemStack[] {getItem(id), null, null, null, null, null, null, null, null}).register(this);
         }
 
         if (pie) {
@@ -331,7 +331,7 @@ public class ExoticGarden extends JavaPlugin implements SlimefunAddon {
         new ExoticGardenFruit(mainCategory, new SlimefunItemStack(enumStyle, texture, color + displayname), ExoticGardenRecipeTypes.HARVEST_BUSH, true, new ItemStack[] {null, null, null, null, getItem(enumStyle + "_BUSH"), null, null, null, null}).register(this);
     }
 
-    private void registerMagicalPlant(String name, ItemStack item, String texture, ItemStack[] recipe) {
+    private void registerMagicalPlant(String name, String displayname, ItemStack item, String texture, ItemStack[] recipe) {
         String upperCase = name.toUpperCase(Locale.ROOT);
         String enumStyle = upperCase.replace(' ', '_');
 
